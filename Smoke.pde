@@ -1,11 +1,16 @@
 import java.util.LinkedList;
 
+int coloration = 50;
+
 class Smoke {
   private LinkedList<Coordinate> positions;
   private Color coloris;
 
   public Smoke(Coordinate position) {
-    coloris = new Color((int)random(255), (int)random(255), (int)random(255));
+    int r = (int)random(255 - coloration) + coloration;
+    int g = (int)random(255 - coloration) + coloration;
+    int b = (int)random(255 - coloration) + coloration;
+    coloris = new Color(r, g ,b);
     positions = new LinkedList();
     positions.add(position);
   }
@@ -33,7 +38,7 @@ class Smoke {
   public void draw(PGraphics graphic) {
     coloris.setColor(graphic);
     for(int i = 0; i < positions.size(); ++i) {
-      graphic.ellipse(positions.get(i).x % width, this.positions.get(i).y % height, i / 5.0, i / 5.0); 
+      graphic.ellipse(positions.get(i).x % width, this.positions.get(i).y % height, i / 4.0, i / 4.0); 
     }
   }
 }

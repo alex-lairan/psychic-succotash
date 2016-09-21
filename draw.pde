@@ -38,21 +38,3 @@ void render_final() {
   }
   render.updatePixels();
 }
-
-int getHue(int red, int green, int blue) {
-  float min = Math.min(Math.min(red, green), blue);
-  float max = Math.max(Math.max(red, green), blue);
-
-  float hue = 0f;
-  if (max == red)
-    hue = (green - blue) / (max - min);
-  else if (max == green)
-    hue = 2f + (blue - red) / (max - min);
-  else
-    hue = 4f + (red - green) / (max - min);
-
-  hue = hue * 60;
-  if (hue < 0) hue = hue + 360;
-
-  return Math.round(hue);
-}

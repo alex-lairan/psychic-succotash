@@ -1,7 +1,9 @@
 Coordinate[] mouse_pos = new Coordinate[2];
 
 void mousePressed() {
-   background(0);
+  dots.beginDraw();
+  dots.background(0);
+  dots.endDraw();
 }
 
 void init_mouse() {

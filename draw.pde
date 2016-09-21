@@ -16,6 +16,22 @@ void draw() {
   //System.out.println("Green: " + (dots.pixels[1] & 0x00FF00) / 0x0000FF);
   //System.out.println("Blue: " + (dots.pixels[1] & 0x0000FF));
   //System.out.println("====================");
-  image(img, 0, 0);
-  image(dots, 0, 0);
+  //image(img, 0, 0);
+  //image(dots, 0, 0);
+  render.beginDraw();
+  render_final();
+  render.endDraw();
+  image(render, 0, 0);
+}
+
+void render_final() {
+  render.loadPixels();
+  for (int i = 0; i < render.pixels.length; i++) {
+    int r = (dots.pixels[i] & 0xFF0000) / 0x00FFFF;
+    int g = (dots.pixels[i] & 0x00FF00) / 0x0000FF;
+    int b = (dots.pixels[i] & 0x0000FF);
+    color c = color(r, g, b);
+    render.pixels[i] = c;
+  }
+  render.updatePixels();
 }

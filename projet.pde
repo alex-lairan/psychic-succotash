@@ -1,6 +1,6 @@
 import java.util.LinkedList;
 
-PGraphics dots;
+PGraphics dots, render;
 PImage img;
 
 LinkedList<Smoke> smokes = new LinkedList();
@@ -18,6 +18,7 @@ void setup() {
   frameRate(60);
   init_mouse();
   
-  dots  = createGraphics(width, height);
-  img = loadImage("mountain.jpeg");
+  dots    = createGraphics(width, height);
+  render  = createGraphics(width, height);
+  img     = loadImage("mountain.jpeg");
 }

@@ -6,8 +6,12 @@ class Color {
     g = _g;
     b = _b;
   }
-  
+
   public void setColor() {
-    fill(r, g, b); 
+    fill(r, g, b);
+  }
+  
+  public void setColor(PGraphics graphic) {
+    graphic.fill(r, g, b); 
   }
 }

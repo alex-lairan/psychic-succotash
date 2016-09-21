@@ -1,3 +1,5 @@
+Coordinate[] mouse_pos = new Coordinate[2];
+
 void mousePressed() {
    background(0);
 }

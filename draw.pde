@@ -29,12 +29,14 @@ void render_final() {
   render.background(0);
   render.loadPixels();
   for (int i = 0; i < render.pixels.length; i++) {
-    int r = (dots.pixels[i] & 0xFF0000) / 0x00FFFF;
-    int g = (dots.pixels[i] & 0x00FF00) / 0x0000FF;
-    int b = (dots.pixels[i] & 0x0000FF);
-    int a = (img.pixels[i] & 0x0000FF);
-    color c = color(r, g, b, a);
-    render.pixels[i] = c;
+    if(dots.pixels[i] != 0) {
+      int r = (dots.pixels[i] & 0xFF0000) / 0x00FFFF;
+      int g = (dots.pixels[i] & 0x00FF00) / 0x0000FF;
+      int b = (dots.pixels[i] & 0x0000FF);
+      int a = (((img.pixels[i] & 0xFF0000) / 0x00FFFF) + ((img.pixels[i] & 0x00FF00) / 0x0000FF) + (img.pixels[i] & 0x0000FF)) / 3;
+
+      render.pixels[i] = color(r, g, b, a); 
+    }
   }
   render.updatePixels();
 }

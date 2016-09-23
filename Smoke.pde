@@ -7,9 +7,15 @@ class Smoke {
   private Color coloris;
 
   public Smoke(Coordinate position) {
-    int r = (int)random(255 - coloration) + coloration;
-    int g = (int)random(255 - coloration) + coloration;
-    int b = (int)random(255 - coloration) + coloration;
+    int a = img.pixels[position.x + position.y * img.width];
+    int r = (a & 0xFF0000) / 0x00FFFF;
+    int g = (a & 0x00FF00) / 0x0000FF;
+    int b = (a & 0x0000FF);
+    if((r == g && g == b) || ((r + g +b) / 3) < 15) {
+      r = (int)random(255 - coloration) + coloration;
+      g = (int)random(255 - coloration) + coloration;
+      b = (int)random(255 - coloration) + coloration;
+    }
     coloris = new Color(r, g ,b);
     positions = new LinkedList();
     positions.add(position);
@@ -38,7 +44,8 @@ class Smoke {
   public void draw(PGraphics graphic) {
     coloris.setColor(graphic);
     for(int i = 0; i < positions.size(); ++i) {
-      graphic.ellipse(positions.get(i).x % width, this.positions.get(i).y % height, i / 4.0, i / 4.0); 
+      float circle_size = 1.5;
+      graphic.ellipse(positions.get(i).x % width, this.positions.get(i).y % height, i / circle_size, i / circle_size); 
     }
   }
 }
